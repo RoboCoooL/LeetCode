@@ -21,12 +21,11 @@ public class Problem26
     }
 
     
-    [Test]
-    [TestCase(new[] {1,1,2}, new[]{1,2,0}, ExpectedResult = 2)]
-    public int Test(int[] nums, int[] numsExpected)
+    [Theory]
+    [InlineData(new[] {1,1,2}, new[]{1,2,0}, 2)]
+    public void CanRemoveDuplicates(int[] nums, int[] numsExpected, int retExpected)
     {
-        var ret = RemoveDuplicates(nums);
-        Assert.That(nums[..ret], Is.EqualTo(numsExpected[..ret]));
-        return ret;
+        RemoveDuplicates(nums).Should().Be(retExpected);
+        nums.Should().Equal(numsExpected);
     }
 }
