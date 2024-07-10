@@ -97,7 +97,7 @@ public class ListNode
 
     public ListNode(Queue<int> elements) => ListNodeFromList(elements);
 
-    public void ListNodeFromList(Queue<int> elements)
+    private void ListNodeFromList(Queue<int> elements)
     {
         if ( !elements.TryDequeue(out val) )
         {
