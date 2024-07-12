@@ -55,13 +55,9 @@ public class ListNodeClassData : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {
-        ListNode list1;
-        ListNode list2;
-        ListNode expectedList;
-
-        list1 = new ListNode(new Queue<int>([1, 2, 4]));
-        list2 = new ListNode(new Queue<int>([1, 3, 4]));
-        expectedList = new ListNode(new Queue<int>([1, 1, 2, 3, 4, 4]));
+        ListNode list1 = new([1, 2, 4]);
+        ListNode list2 = new([1, 3, 4]);
+        ListNode expectedList = new([1, 1, 2, 3, 4, 4]);
 
         yield return [list1, list2, expectedList];
 
@@ -72,43 +68,11 @@ public class ListNodeClassData : IEnumerable<object[]>
         yield return [list1, list2, expectedList];
 
         list1 = null;
-        list2 = new ListNode(new Queue<int>([0]));
-        expectedList = new ListNode(new Queue<int>([0]));
+        list2 = new ListNode([0]);
+        expectedList = new ListNode([0]);
 
         yield return [list1, list2, expectedList];
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-}
-
-/**
- * * Definition for singly-linked list.
- */
-public class ListNode
-{
-    public ListNode next;
-    public int val;
-
-    public ListNode(int val = 0, ListNode next = null)
-    {
-        this.val = val;
-        this.next = next;
-    }
-
-    public ListNode(Queue<int> elements) => ListNodeFromList(elements);
-
-    private void ListNodeFromList(Queue<int> elements)
-    {
-        if ( !elements.TryDequeue(out val) )
-        {
-            return;
-        }
-
-        if ( elements.Count == 0 )
-        {
-            return;
-        }
-
-        next = new ListNode(elements);
-    }
 }
