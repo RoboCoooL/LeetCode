@@ -12,9 +12,7 @@ public class Problem235
         List<TreeNode> pPath = [];
         List<TreeNode> qPath = [];
         PathSearch(root, p.val, pPath);
-        Console.WriteLine($"{pPath}");
         PathSearch(root, q.val, qPath);
-        Console.WriteLine($"{qPath}");
 
         TreeNode lcaNode = root;
         for ( int i = 0; i < Math.Min(pPath.Count, qPath.Count); i++ )
