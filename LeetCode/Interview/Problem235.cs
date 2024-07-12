@@ -7,7 +7,52 @@ namespace LeetCode.Interview;
 /// </summary>
 public class Problem235
 {
-    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) => root;
+    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+    {
+        List<TreeNode> pPath = [];
+        List<TreeNode> qPath = [];
+        PathSearch(root, p.val, pPath);
+        Console.WriteLine($"{pPath}");
+        PathSearch(root, q.val, qPath);
+        Console.WriteLine($"{qPath}");
+
+        TreeNode lcaNode = root;
+        for ( int i = 0; i < Math.Min(pPath.Count, qPath.Count); i++ )
+        {
+            if ( pPath[i].val != qPath[i].val )
+            {
+                return lcaNode;
+            }
+
+            lcaNode = pPath[i];
+        }
+
+        return lcaNode;
+    }
+
+    private TreeNode PathSearch(TreeNode root, int key, List<TreeNode> path)
+    {
+        // Base Cases: root is null or key is present at root
+        if ( root == null || root.val == key )
+        {
+            if ( root != null )
+            {
+                path.Add(root);
+            }
+
+            return root;
+        }
+
+        path.Add(root);
+        // Key is greater than root's key
+        if ( root.val < key )
+        {
+            return PathSearch(root.right, key, path);
+        }
+
+        // Key is smaller than root's key
+        return PathSearch(root.left, key, path);
+    }
 
     [Theory]
     [ClassData(typeof(LowestCommonAncestorTestData))]

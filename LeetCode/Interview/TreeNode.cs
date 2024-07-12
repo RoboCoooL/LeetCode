@@ -10,12 +10,12 @@ public class TreeNode
 
     public TreeNode(int x) => val = x;
 
-    // public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    // {
-    //     this.val = val;
-    //     this.left = left;
-    //     this.right = right;
-    // }
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+    {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
 
     public TreeNode(List<int?> nodes)
     {
@@ -51,5 +51,18 @@ public class TreeNode
                 q.Enqueue(curr.right);
             }
         }
+    }
+
+    // Preorder tree traversal (Root - Left - Right)
+    public static void PreorderTraversal(TreeNode root)
+    {
+        if ( root == null )
+        {
+            return;
+        }
+
+        Console.Write(root.val + " ");
+        PreorderTraversal(root.left);
+        PreorderTraversal(root.right);
     }
 }

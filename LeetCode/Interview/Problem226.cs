@@ -41,12 +41,12 @@ public class Problem226
     }
 
     [Theory]
-    [ClassData(typeof(TreeNodeClassData))]
+    [ClassData(typeof(InvertTreeTestData))]
     public void CanInvertTree(TreeNode root, TreeNode expected) =>
         InvertTree(root).Should().BeEquivalentTo(expected);
 }
 
-public class TreeNodeClassData : IEnumerable<object[]>
+public class InvertTreeTestData : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {
