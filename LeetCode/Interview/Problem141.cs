@@ -7,10 +7,7 @@ namespace LeetCode.Interview;
 /// </summary>
 public class Problem141
 {
-    public bool HasCycle(ListNode head)
-    {
-        return HasCycleRecursive(head, new Dictionary<ListNode, int>());
-    }
+    public bool HasCycle(ListNode head) => HasCycleRecursive(head, new Dictionary<ListNode, int>());
 
     private bool HasCycleRecursive(ListNode head, Dictionary<ListNode, int> indexes)
     {
@@ -21,6 +18,30 @@ public class Problem141
 
         bool isCycle = !indexes.TryAdd(head, head.val);
         return isCycle ? isCycle : HasCycleRecursive(head.next, indexes);
+    }
+
+    public bool HasCycleStack(ListNode head)
+    {
+        if ( head == null )
+        {
+            return false;
+        }
+
+        bool isCycle = false;
+        Dictionary<ListNode, int> indexes = [];
+        Stack<ListNode> stack = new();
+        stack.Push(head);
+        while ( stack.Count > 0 && !isCycle )
+        {
+            ListNode node = stack.Pop();
+            isCycle = !indexes.TryAdd(node, node.val);
+            if ( node.next != null )
+            {
+                stack.Push(node.next);
+            }
+        }
+
+        return isCycle;
     }
 
     [Theory]
