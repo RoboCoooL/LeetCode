@@ -61,8 +61,21 @@ public class TreeNode
             return;
         }
 
-        Console.Write(root.val + " ");
-        PreorderTraversal(root.left);
-        PreorderTraversal(root.right);
+        Stack<TreeNode> stack = new();
+        stack.Push(root);
+        while ( stack.Count > 0 )
+        {
+            TreeNode currNode = stack.Pop();
+            Console.Write(currNode.val + " ");
+            if ( currNode.right != null )
+            {
+                stack.Push(currNode.right);
+            }
+
+            if ( currNode.left != null )
+            {
+                stack.Push(currNode.left);
+            }
+        }
     }
 }
