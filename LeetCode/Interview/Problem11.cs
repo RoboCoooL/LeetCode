@@ -30,6 +30,6 @@ public class Problem11
     [Theory]
     [InlineData(new[] {1, 8, 6, 2, 5, 4, 8, 3, 7}, 49)]
     [InlineData(new[] {1, 1}, 1)]
-    public void IsMaxArea(int[] height, int expected) =>
+    public void CanMaxArea(int[] height, int expected) =>
         MaxArea(height).Should().Be(expected);
 }
